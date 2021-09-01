@@ -1,0 +1,142 @@
+.ngx-carousel {
+  position: relative;
+  margin: auto;
+
+  &.overflow-hidden {
+    overflow: hidden;
+  }
+
+  .ngx-carousel-step {
+
+    &.display-none {
+      display: none;
+    }
+
+    &.display-block {
+      display: block !important;
+    }
+
+    &.image-background-style {
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .ngx-carousel-step-content {
+      width: 90%;
+      text-align: center;
+      padding: 20px;
+      margin: 0 auto;
+    }
+
+  }
+
+  .ngx-carousel-previous-button, .ngx-carousel-previous-button {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.previous-button {
+      left: 0;
+
+      &.allow-button-animation {
+        transition: left ease 0.5s;
+
+        &:hover {
+          left: -2px;
+        }
+      }
+    }
+
+    &.next-button {
+      right: 0;
+
+      &.allow-button-animation {
+        transition: right ease 0.5s;
+
+        &:hover {
+          right: -2px;
+        }
+      }
+
+    }
+
+    &.previous-button-outside {
+      left: -15px;
+
+      &.allow-button-animation {
+        transition: left ease 0.5s;
+
+        &:hover {
+          left: -17px;
+        }
+      }
+    }
+
+    &.next-button-outside {
+      right: -15px;
+
+      &.allow-button-animation {
+        transition: right ease 0.5s;
+
+        &:hover {
+          right: -17px;
+        }
+      }
+    }
+
+    .icon-span {
+      padding: 10px;
+      border-radius: 50%;
+    }
+  }
+
+  .ngx-carousel-dot-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .ngx-carousel-dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      opacity: 0.5;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active, .ngx-carousel-dot:hover {
+      opacity: 1;
+    }
+  }
+
+}
+
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2s;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: .4
+  }
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+  to {
+    opacity: 1
+  }
+}

@@ -1,0 +1,25 @@
+button {
+  cursor: pointer;
+}
+
+:host::ng-deep {
+  .testing {
+    span {
+      border-radius: 5px !important;
+    }
+  }
+
+  .step-content {
+    margin-top: 50px;
+
+    h1 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+}

@@ -1,0 +1,46 @@
+<div class="ngx-carousel {{animation ? carouselAnimationClass : null}}"
+     [class.overflow-hidden]="hideOverFlow"
+     [ngStyle]="getNgxCarouselStyle">
+  <div *ngFor="let step of stepList; let stepIndex = index;"
+       class="ngx-carousel-step display-none  {{(animation && applyAnimationToSteps) || step.animation ? step.carouselAnimationClass : null}}"
+       [ngStyle]="getNgxCarouselStepStyle(step, stepIndex)"
+       [ngClass]="getNgxCarouselStepClass(step, stepIndex)"
+       #stepDivRef>
+    <div class="ngx-carousel-step-content">
+      <ng-container *ngTemplateOutlet="step.stepContentDirectiveTemplateRef?.templateRef"></ng-container>
+    </div>
+  </div>
+  <a class="ngx-carousel-previous-button previous-button {{previousButtonClass}}"
+     *ngIf="loop || selectedIndex !== 0"
+     [ngClass]="getPrevButtonClass"
+     (click)="previous()">
+    <ng-container *ngIf="!previousButtonDirectiveTemplateRef">
+      <span class="icon-span" [ngStyle]="getButtonIconStyle">
+        <i class="{{previousButtonIconClass}}"></i>
+      </span>
+    </ng-container>
+    <ng-container *ngIf="previousButtonDirectiveTemplateRef?.templateRef">
+      <ng-container *ngTemplateOutlet="previousButtonDirectiveTemplateRef?.templateRef"></ng-container>
+    </ng-container>
+  </a>
+  <a class="ngx-carousel-previous-button next-button {{nextButtonClass}}"
+     *ngIf="loop || selectedIndex !== stepList.length - 1"
+     [ngClass]="getNextButtonClass"
+     (click)="next()">
+    <ng-container *ngIf="!nextButtonDirectiveTemplateRef">
+      <span class="icon-span" [ngStyle]="getButtonIconStyle">
+        <i class="{{nextButtonIconClass}}"></i>
+      </span>
+    </ng-container>
+    <ng-container *ngIf="nextButtonDirectiveTemplateRef?.templateRef">
+      <ng-container *ngTemplateOutlet="nextButtonDirectiveTemplateRef?.templateRef"></ng-container>
+    </ng-container>
+  </a>
+  <div *ngIf="showDots" class="ngx-carousel-dot-container">
+    <span *ngFor="let step of stepList; let stepIndex = index;"
+          [style.background-color]="dotsBg"
+          [class.active]="stepIndex === selectedIndex"
+          class="ngx-carousel-dot" (click)="changeCurrentStep(stepIndex)">
+    </span>
+  </div>
+</div>
