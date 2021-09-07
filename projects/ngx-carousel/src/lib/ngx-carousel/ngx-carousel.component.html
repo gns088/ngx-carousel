@@ -1,13 +1,22 @@
 <div class="ngx-carousel {{animation ? carouselAnimationClass : null}}"
      [class.overflow-hidden]="hideOverFlow"
-     [ngStyle]="getNgxCarouselStyle">
+     [ngStyle]="getNgxCarouselStyle"
+     [ngxCarouselKeyEvents]="useKeyboard"
+     (next)="next()"
+     (previous)="previous()">
   <div *ngFor="let step of stepList; let stepIndex = index;"
-       class="ngx-carousel-step display-none  {{(animation && applyAnimationToSteps) || step.animation ? step.carouselAnimationClass : null}}"
+       class="ngx-carousel-step ngx-carousel-step-{{stepIndex}}
+        display-none  {{(animation && applyAnimationToSteps) || step.animation ? step.carouselAnimationClass : null}}"
        [ngStyle]="getNgxCarouselStepStyle(step, stepIndex)"
        [ngClass]="getNgxCarouselStepClass(step, stepIndex)"
        #stepDivRef>
     <div class="ngx-carousel-step-content">
       <ng-container *ngTemplateOutlet="step.stepContentDirectiveTemplateRef?.templateRef"></ng-container>
+    </div>
+    <div *ngIf="!step.hideOverlay"
+         class="ngx-carousel-step-overlay"
+         [style.background-color]="step.overlayColor"
+         [style.opacity]="step.overlayOpacity">
     </div>
   </div>
   <a class="ngx-carousel-previous-button previous-button {{previousButtonClass}}"
@@ -40,7 +49,7 @@
     <span *ngFor="let step of stepList; let stepIndex = index;"
           [style.background-color]="dotsBg"
           [class.active]="stepIndex === selectedIndex"
-          class="ngx-carousel-dot" (click)="changeCurrentStep(stepIndex)">
+          class="ngx-carousel-dot" (click)="slideTo(stepIndex)">
     </span>
   </div>
 </div>

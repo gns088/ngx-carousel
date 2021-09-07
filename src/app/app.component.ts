@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxCarouselEvent } from '../../projects/ngx-carousel/src/lib/types';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,11 @@ export class AppComponent {
   title = 'ngx-carousel-lib';
   public animationClass = 'fade';
   public carouselConfine = {
-    height: 400,
+    height: '400px',
     width: '90%',
     applyAnimationToSteps: true,
     animation: false,
-    loop: false,
+    loop: true,
     autoLoop: false,
     autoLoopTime: 3000,
     outsideButton: true,
@@ -35,10 +36,18 @@ export class AppComponent {
       buttonBg: '',
     },
     {
-      bgImage: 'https://picsum.photos/id/1025/1280/720'
+      bgImage: 'url(https://picsum.photos/id/1025/1280/720)'
     },
     {
       bgImage: 'https://picsum.photos/id/1022/1280/720'
     }
   ];
+
+  onNext(event: NgxCarouselEvent): void {
+    console.log('onNext($event)', event);
+  }
+
+  onStepChange(event: NgxCarouselEvent): void {
+    console.log('onStepChange($event)', event);
+  }
 }

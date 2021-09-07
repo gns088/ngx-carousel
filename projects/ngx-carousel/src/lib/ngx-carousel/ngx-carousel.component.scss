@@ -7,6 +7,7 @@
   }
 
   .ngx-carousel-step {
+    height: 100%;
 
     &.display-none {
       display: none;
@@ -18,7 +19,15 @@
 
     &.image-background-style {
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 100%;
+    }
+
+    .ngx-carousel-step-overlay {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: auto;
+      top: 0;
     }
 
     .ngx-carousel-step-content {
