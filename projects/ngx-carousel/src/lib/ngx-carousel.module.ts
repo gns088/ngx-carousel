@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { NgxCarouselComponent } from './ngx-carousel/ngx-carousel.component';
 import { CommonModule } from '@angular/common';
 import { NgxCarouselStepComponent } from './components';
-import { NgxCarouselNextButtonDirective, NgxCarouselPreviousButtonDirective, NgxCarouselStepContentDirective } from './directives';
-import { NgxCarouselKeyEventsDirective } from './directives/ngx-carousel-key-events.directive';
-
+import {
+  NgxCarouselKeyEventsDirective,
+  NgxCarouselNextButtonDirective,
+  NgxCarouselPreviousButtonDirective,
+  NgxCarouselStepContentDirective,
+  NgxCarouselSwipeDirective
+} from './directives';
 
 @NgModule({
   declarations: [
@@ -13,18 +17,19 @@ import { NgxCarouselKeyEventsDirective } from './directives/ngx-carousel-key-eve
     NgxCarouselNextButtonDirective,
     NgxCarouselPreviousButtonDirective,
     NgxCarouselStepContentDirective,
-    NgxCarouselKeyEventsDirective
+    NgxCarouselKeyEventsDirective,
+    NgxCarouselSwipeDirective,
   ],
   exports: [
     NgxCarouselComponent,
     NgxCarouselStepComponent,
     NgxCarouselNextButtonDirective,
     NgxCarouselPreviousButtonDirective,
-    NgxCarouselStepContentDirective
+    NgxCarouselStepContentDirective,
+    NgxCarouselKeyEventsDirective,
+    NgxCarouselSwipeDirective,
   ],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
 })
 export class NgxCarouselModule {
 }

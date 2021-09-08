@@ -15,15 +15,14 @@ import { GenerateTextColor } from '../utils';
 import { Subscription, timer } from 'rxjs';
 import { NgxCarouselStepComponent } from '../components';
 import { NgxCarouselNextButtonDirective, NgxCarouselPreviousButtonDirective } from '../directives';
-import { NgxCarouselEvent } from '../types';
-import { ListKeyManager } from '@angular/cdk/a11y';
+import { NgxCarousel, NgxCarouselEvent } from '../types';
 
 @Component({
   selector: 'ngx-carousel',
   templateUrl: './ngx-carousel.component.html',
   styleUrls: ['./ngx-carousel.component.scss'],
 })
-export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy {
+export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, AfterContentInit {
 
   /**
    * Height Of the carousel
@@ -57,17 +56,17 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
 
   /**
    * Apply animation to carousel
-   * default: false
+   * default: true
    */
   @Input()
-  animation = false;
+  animation = true;
 
   /**
    * Carousel animation class, we can write css for animation in parent component and pass to this config
-   * default: fade
+   * default: ngx-carousel-fade-animation
    */
   @Input()
-  carouselAnimationClass = 'fade';
+  carouselAnimationClass = 'ngx-carousel-fade-animation';
 
   /**
    * Apply loop to carousel steps,
@@ -92,7 +91,7 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
   autoLoopTime = 3000;
 
   /**
-   * to show arrow button half outside to carousel area
+   * To show arrow button half outside to carousel area
    * default: false
    */
   @Input()
@@ -113,18 +112,25 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
   useKeyboard = true;
 
   /**
-   * When user scroll on carousel it will change steps
+   * When user scroll on carousel while hovering mouse on carousel it will change steps
    * default: true
    */
   @Input()
   useMouseWheel = true;
 
   /**
-   * When user keep mouse on carousel it will stop auto loop
+   * When user hover mouse on carousel it will stop auto loop
    * default: true
    */
   @Input()
   pauseOnHover = true;
+
+  /**
+   * Reset to step 0 on window resize event
+   * default: true
+   */
+  @Input()
+  resetOnResize = true;
 
   /**
    * Show / Hide dots at bottom of carousel
@@ -168,16 +174,23 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
 
   /**
    * To apply background dots buttons
+   * default: #FFFFFF
    */
   @Input()
   dotsBg = '#FFFFFF';
+
+  /**
+   * to set background size to step
+   * default: cover
+   */
+  @Input()
+  stepBackgroundSize = 'cover';
 
   /**
    * getting list of steps component inside <ngx-carousel>
    */
   @ContentChildren(NgxCarouselStepComponent, {descendants: true})
   stepList: QueryList<NgxCarouselStepComponent>;
-  public listKeyManager: ListKeyManager<NgxCarouselStepComponent>;
 
   /**
    * selected step index
@@ -204,16 +217,34 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
    */
   private timerSubscription: Subscription;
 
+
   /**
-   * Event Emitter of component
+   * It emits the NgxCarouselEvent when slide move to next step
    */
   @Output('onNext')
   onNextEvent: EventEmitter<NgxCarouselEvent> = new EventEmitter<NgxCarouselEvent>();
+
+  /**
+   * It emits the NgxCarouselEvent when slide move to previous step
+   */
   @Output('onPrevious')
   onPreviousEvent: EventEmitter<NgxCarouselEvent> = new EventEmitter<NgxCarouselEvent>();
+
+  /**
+   * It emits the NgxCarouselEvent when slide move to next or previous step, will emit when step changes
+   */
   @Output('onStepChange')
   onStepChangeEvent: EventEmitter<NgxCarouselEvent> = new EventEmitter<NgxCarouselEvent>();
 
+  /**
+   * It emits when ngAfterContentInit life cycle called
+   */
+  @Output('onContentInIt')
+  onContentInIt: EventEmitter<void> = new EventEmitter<void>();
+
+  /**
+   * host listener to stop timer if mouse is on the carousel
+   */
   @HostListener('mouseenter')
   private onMouseEnter(): void {
     if (this.pauseOnHover) {
@@ -221,6 +252,9 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
     }
   }
 
+  /**
+   * host listener to start timer if mouse is on the carousel
+   */
   @HostListener('mouseleave')
   private onMouseLeave(): void {
     if (this.pauseOnHover) {
@@ -228,8 +262,11 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
     }
   }
 
+  /**
+   * host listener to change step if user scroll using mouse wheel when mouse is on carousel
+   */
   @HostListener('mousewheel', ['$event'])
-  private onMouseWheel(event: MouseWheelEvent): void {
+  private onMouseWheel(event: WheelEvent): void {
     if (this.useMouseWheel) {
       event.preventDefault(); // prevent window to scroll
       const Δ = Math.sign(event.deltaY);
@@ -242,14 +279,16 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
     }
   }
 
+  /**
+   * host listener to change step 0 if any resize event is fired
+   */
   @HostListener('window:resize', ['$event'])
   private onResize(event: Event): void {
     // Reset carousel when window is resized
     // in order to avoid major glitches.
-    this.slideTo(0);
-  }
-
-  constructor() {
+    if (this.resetOnResize) {
+      this.slideTo(0);
+    }
   }
 
   /**
@@ -259,16 +298,16 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
     return this.stepList.toArray()[this.selectedIndex];
   }
 
+
+  ngAfterContentInit(): void {
+    this.onContentInIt.emit();
+  }
+
   /**
    * initializes auto loop if enabled when component loads
    */
   ngOnInit(): void {
     this.startTimer();
-  }
-
-  ngAfterContentInit(): void {
-    this.listKeyManager = new ListKeyManager(this.stepList);
-    this.listKeyManager.updateActiveItem(this.selectedIndex);
   }
 
   /**
@@ -293,7 +332,6 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
     }
   }
 
-
   ngOnDestroy(): void {
     this.stopTimer();
   }
@@ -305,6 +343,10 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
     return color ? GenerateTextColor(color) : null;
   }
 
+  /**
+   * return details for event emitter
+   * return: NgxCarouselEvent
+   */
   private get getEmitEventDetails(): NgxCarouselEvent {
     return {
       index: this.selectedIndex,
@@ -352,64 +394,4 @@ export class NgxCarouselComponent implements OnInit, AfterContentInit, OnDestroy
     }
   }
 
-  /**
-   * return style for <ngx-carousel>
-   */
-  get getNgxCarouselStyle(): object {
-    return {
-      height: this.height,
-      width: this.width
-    };
-  }
-
-  /**
-   * return classes for <ngx-carousel-step>
-   */
-  getNgxCarouselStepStyle(step: NgxCarouselStepComponent, stepIndex: number): object {
-    return {
-      'height.px': this.height,
-      'background-image': step.bgImage ? step.bgImage : '',
-      'background-color': step.bgColor
-    };
-  }
-
-  /**
-   * return class for <ngx-carousel-step>
-   */
-  getNgxCarouselStepClass(step: NgxCarouselStepComponent, stepIndex: number): object {
-    return {
-      'display-block': stepIndex === this.selectedIndex,
-      'image-background-style': step.bgImage
-    };
-  }
-
-  /**
-   * return style for buttons
-   */
-  get getButtonIconStyle(): object {
-    return {
-      'background-color': this.selectedStep?.buttonBg || this.buttonBg || '#FFFFFF',
-      color: this.getButtonTextColor(this.selectedStep?.buttonBg || this.buttonBg || '#FFFFFF')
-    };
-  }
-
-  /**
-   * return class for previous button
-   */
-  get getPrevButtonClass(): object {
-    return {
-      'previous-button-outside': this.outsideButton,
-      'allow-button-animation': this.allowButtonAnimation
-    };
-  }
-
-  /**
-   * return class for next button
-   */
-  get getNextButtonClass(): object {
-    return {
-      'next-button-outside': this.outsideButton,
-      'allow-button-animation': this.allowButtonAnimation
-    };
-  }
 }

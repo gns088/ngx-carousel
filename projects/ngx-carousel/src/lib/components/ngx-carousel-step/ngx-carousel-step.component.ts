@@ -1,10 +1,9 @@
 import { Component, ContentChild, Input, OnInit } from '@angular/core';
 import { NgxCarouselStepContentDirective } from '../../directives';
-import { ListKeyManagerOption } from '@angular/cdk/a11y';
-import { DomSanitizer } from '@angular/platform-browser';
+import { NgxCarouselStep } from '../../types';
 
 @Component({selector: 'ngx-carousel-step', template: ''})
-export class NgxCarouselStepComponent implements ListKeyManagerOption, OnInit {
+export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
 
   /**
    * to set background image of steps
@@ -34,14 +33,14 @@ export class NgxCarouselStepComponent implements ListKeyManagerOption, OnInit {
   public animation = true;
 
   /**
-   * hide step overlay
-   * default: true
+   * Hide step overlay
+   * default: false
    */
   @Input()
   public hideOverlay = false;
 
   /**
-   * overlay color
+   * Overlay color
    * default: #00000040
    */
   @Input()
@@ -49,28 +48,23 @@ export class NgxCarouselStepComponent implements ListKeyManagerOption, OnInit {
 
   /**
    * overlay Opacity
-   * default: 0.5
+   * default: 0.3
    */
   @Input()
-  public overlayOpacity = '0.5';
+  public overlayOpacity = '0.3';
 
   /**
-   * To set animation class of steps
-   * default: fade
+   * To set background size to step
+   * default: undefined
    */
   @Input()
-  public carouselAnimationClass = 'fade';
+  public backgroundSize;
 
   /**
    * template reference for content of steps
    */
   @ContentChild(NgxCarouselStepContentDirective, {static: false})
   stepContentDirectiveTemplateRef: NgxCarouselStepContentDirective;
-
-  @Input() public disabled = false; // implements ListKeyManagerOption
-
-  constructor(public sanitizer: DomSanitizer) {
-  }
 
   ngOnInit(): void {
     if (this.bgImage && !this.bgImage.includes('url')) {

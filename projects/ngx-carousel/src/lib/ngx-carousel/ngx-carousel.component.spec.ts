@@ -8,9 +8,9 @@ describe('NgxCarouselComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgxCarouselComponent ]
+      declarations: [NgxCarouselComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

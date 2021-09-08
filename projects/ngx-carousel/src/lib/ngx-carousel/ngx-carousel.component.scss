@@ -19,7 +19,6 @@
 
     &.image-background-style {
       background-repeat: no-repeat;
-      background-size: 100%;
     }
 
     .ngx-carousel-step-overlay {
@@ -125,14 +124,14 @@
 }
 
 
-.fade {
-  -webkit-animation-name: fade;
+.ngx-carousel-fade-animation {
+  -webkit-animation-name: ngx-carousel-fade-animation;
   -webkit-animation-duration: 2s;
-  animation-name: fade;
+  animation-name: ngx-carousel-fade-animation;
   animation-duration: 2s;
 }
 
-@-webkit-keyframes fade {
+@-webkit-keyframes ngx-carousel-fade-animation {
   from {
     opacity: .4
   }
@@ -141,7 +140,7 @@
   }
 }
 
-@keyframes fade {
+@keyframes ngx-carousel-fade-animation {
   from {
     opacity: .4
   }

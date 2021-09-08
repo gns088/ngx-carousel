@@ -5,18 +5,20 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run ngx-carousel-lib:serve-ssr",
     "serve:ssr": "node dist/ngx-carousel-lib/server/main.js",
-    "build:ssr": "ng build --prod && ng run ngx-carousel-lib:server:production",
-    "prerender": "ng run ngx-carousel-lib:prerender"
+    "build:ssr": "yarn run build:prod && ng run ngx-carousel-lib:server:production",
+    "prerender": "ng run ngx-carousel-lib:prerender",
+    "lib:build": "ng build ngx-carousel --prod",
+    "lib:deploy": "npm run lib:build && cd ./dist/ngx-carousel/ && npm pack && npm publish --access public"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.5",
-    "@angular/cdk": "^12.2.4",
     "@angular/common": "~11.2.5",
     "@angular/compiler": "~11.2.5",
     "@angular/core": "~11.2.5",
@@ -32,7 +34,7 @@
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.3",
+    "@angular-devkit/build-angular": "~0.1102.14",
     "@angular/cli": "~11.2.4",
     "@angular/compiler-cli": "~11.2.5",
     "@nguniversal/builders": "^11.2.1",

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxCarouselEvent } from '../../projects/ngx-carousel/src/lib/types';
+import { NgxCarousel, NgxCarouselEvent } from '../../projects/ngx-carousel/src/lib';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +8,13 @@ import { NgxCarouselEvent } from '../../projects/ngx-carousel/src/lib/types';
 })
 export class AppComponent {
   title = 'ngx-carousel-lib';
-  public animationClass = 'fade';
-  public carouselConfine = {
+  public animationClass = 'ngx-carousel-fade-animation';
+  public carouselConfig: NgxCarousel = {
     height: '400px',
     width: '90%',
     applyAnimationToSteps: true,
     animation: false,
-    loop: true,
+    loop: false,
     autoLoop: false,
     autoLoopTime: 3000,
     outsideButton: true,
@@ -26,6 +26,13 @@ export class AppComponent {
     nextButtonIconClass: 'fas fa-long-arrow-right',
     buttonBg: '#3b95b8',
     dotsBg: '#FFFFFF',
+    hideOverFlow: false,
+    carouselAnimationClass: 'ngx-carousel-fade-animation',
+    useKeyboard: true,
+    useMouseWheel: true,
+    pauseOnHover: true,
+    resetOnResize: false,
+    stepBackgroundSize: '100% 100%',
   };
   steps: any[] = [
     {
@@ -42,12 +49,9 @@ export class AppComponent {
       bgImage: 'https://picsum.photos/id/1022/1280/720'
     }
   ];
+  showContent = true;
 
-  onNext(event: NgxCarouselEvent): void {
-    console.log('onNext($event)', event);
-  }
-
-  onStepChange(event: NgxCarouselEvent): void {
-    console.log('onStepChange($event)', event);
+  onEvent(event: NgxCarouselEvent, eventType: string): void {
+    console.log(eventType, event);
   }
 }

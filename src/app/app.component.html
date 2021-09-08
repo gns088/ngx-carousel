@@ -1,27 +1,12 @@
-<ngx-carousel [height]="carouselConfine.height"
-              [width]="carouselConfine.width"
-              [applyAnimationToSteps]="carouselConfine.applyAnimationToSteps"
-              [animation]="carouselConfine.animation"
-              [carouselAnimationClass]="animationClass"
-              [loop]="carouselConfine.loop"
-              [autoLoop]="carouselConfine.autoLoop"
-              [autoLoopTime]="carouselConfine.autoLoopTime"
-              [outsideButton]="carouselConfine.outsideButton"
-              [allowButtonAnimation]="carouselConfine.allowButtonAnimation"
-              [showDots]="carouselConfine.showDots"
-              [previousButtonClass]="carouselConfine.previousButtonClass"
-              [nextButtonClass]="carouselConfine.nextButtonClass"
-              [previousButtonIconClass]="carouselConfine.previousButtonIconClass"
-              [nextButtonIconClass]="carouselConfine.nextButtonIconClass"
-              [buttonBg]="carouselConfine.buttonBg"
-              [dotsBg]="carouselConfine.dotsBg"
-              (onNext)="onNext($event)"
-              (onStepChange)="onStepChange($event)">
-  <ngx-carousel-step *ngFor="let item of steps; let index = index;"
-                     [carouselAnimationClass]="animationClass"
-                     [bgColor]="item.bgColor"
-                     [buttonBg]="item.buttonBg"
-                     [bgImage]="item.bgImage">
+<ngx-carousel>
+  <ngx-carousel-step bgColor="#3b95b8">
+    <ng-template ngxCarouselStepContent>
+      Content
+    </ng-template>
+  </ngx-carousel-step>
+  <ngx-carousel-step bgColor="#cd7312" buttonBg="#3b95b8"></ngx-carousel-step>
+  <ngx-carousel-step bgImage="url(https://picsum.photos/id/1025/1280/720)"></ngx-carousel-step>
+  <ngx-carousel-step bgImage="https://picsum.photos/id/1022/1280/720">
     <ng-template ngxCarouselStepContent>
       <div class="step-content">
         <img src="https://picsum.photos/id/1024/1280/720" alt="Image" width="200px">
@@ -30,7 +15,8 @@
           industry's
           standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
           make
-          a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+          a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting,
           remaining essentially unchanged.</p>
       </div>
     </ng-template>

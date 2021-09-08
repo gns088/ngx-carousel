@@ -1,14 +1,29 @@
 <div class="ngx-carousel {{animation ? carouselAnimationClass : null}}"
      [class.overflow-hidden]="hideOverFlow"
-     [ngStyle]="getNgxCarouselStyle"
+     [ngStyle]="{
+                height: height,
+                width: width
+              }"
      [ngxCarouselKeyEvents]="useKeyboard"
-     (next)="next()"
-     (previous)="previous()">
+     (right)="next()"
+     (left)="previous()">
   <div *ngFor="let step of stepList; let stepIndex = index;"
+       ngxCarouselSwipe
+       (right)="next()"
+       (left)="previous()"
        class="ngx-carousel-step ngx-carousel-step-{{stepIndex}}
-        display-none  {{(animation && applyAnimationToSteps) || step.animation ? step.carouselAnimationClass : null}}"
-       [ngStyle]="getNgxCarouselStepStyle(step, stepIndex)"
-       [ngClass]="getNgxCarouselStepClass(step, stepIndex)"
+        {{(animation && applyAnimationToSteps) || step.animation ? carouselAnimationClass : null}}"
+       [ngStyle]="{
+                    'height.px': height,
+                    'background-image': step.bgImage ? step.bgImage : '',
+                    'background-color': step.bgColor,
+                    'background-size': step.backgroundSize || stepBackgroundSize
+                  }"
+       [ngClass]="{
+                    'display-none': stepIndex !== selectedIndex,
+                    'display-block': stepIndex === selectedIndex,
+                    'image-background-style': !!step.bgImage
+                  }"
        #stepDivRef>
     <div class="ngx-carousel-step-content">
       <ng-container *ngTemplateOutlet="step.stepContentDirectiveTemplateRef?.templateRef"></ng-container>
@@ -21,10 +36,16 @@
   </div>
   <a class="ngx-carousel-previous-button previous-button {{previousButtonClass}}"
      *ngIf="loop || selectedIndex !== 0"
-     [ngClass]="getPrevButtonClass"
+     [ngClass]="{
+                  'previous-button-outside': outsideButton,
+                  'allow-button-animation': allowButtonAnimation
+                }"
      (click)="previous()">
     <ng-container *ngIf="!previousButtonDirectiveTemplateRef">
-      <span class="icon-span" [ngStyle]="getButtonIconStyle">
+      <span class="icon-span" [ngStyle]="{
+          'background-color': selectedStep?.buttonBg || buttonBg || '#FFFFFF',
+          color: getButtonTextColor(selectedStep?.buttonBg || buttonBg || '#FFFFFF')
+        }">
         <i class="{{previousButtonIconClass}}"></i>
       </span>
     </ng-container>
@@ -34,10 +55,16 @@
   </a>
   <a class="ngx-carousel-previous-button next-button {{nextButtonClass}}"
      *ngIf="loop || selectedIndex !== stepList.length - 1"
-     [ngClass]="getNextButtonClass"
+     [ngClass]="{
+                  'next-button-outside': outsideButton,
+                  'allow-button-animation': allowButtonAnimation
+                }"
      (click)="next()">
     <ng-container *ngIf="!nextButtonDirectiveTemplateRef">
-      <span class="icon-span" [ngStyle]="getButtonIconStyle">
+      <span class="icon-span" [ngStyle]="{
+          'background-color': selectedStep?.buttonBg || buttonBg || '#FFFFFF',
+          color: getButtonTextColor(selectedStep?.buttonBg || buttonBg || '#FFFFFF')
+        }">
         <i class="{{nextButtonIconClass}}"></i>
       </span>
     </ng-container>
