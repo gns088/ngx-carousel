@@ -78,7 +78,6 @@ import { NgxCarouselComponent, NgxCarouselStepComponent } from '@gns088/ngx-caro
 | `onStepChange`      | `NgxCarouselEvent`           | It emits the NgxCarouselEvent when slide move to next or previous step, will emit when step changes                            |
 | `onContentInIt`      | `void`           | It emits when ngAfterContentInit life cycle called                            |
 
-
 ### `NgxCarouselStepComponent`
 
 ```typescript
@@ -107,8 +106,56 @@ import { NgxCarouselComponent, NgxCarouselStepComponent } from '@gns088/ngx-caro
 | `overlayOpacity` | `string`  | Step overlay Opacity.   | `0.3`       |
 | `backgroundSize` | `string`  | To set background size to step.   |        |
 
+## Templates
+
+### ngxCarouselStepContent
+
+To add content inside `<ngx-carousel-step></ngx-carousel-step>` we need to add `ngxCarouselStepContent`.
+
+This template should be placed inside `<ngx-carousel-step></ngx-carousel-step>`
+
+```html
+<ngx-carousel>
+  <ngx-carousel-step>
+    <ng-template ngxCarouselStepContent>
+      Content
+    </ng-template>
+  </ngx-carousel-step>
+</ngx-carousel>
+```
+
+### ngxCarouselNextButton
+
+To customize a next button we can use `ngxCarouselNextButton` directive.
+
+This template should be placed inside `<ngx-carousel></ngx-carousel>`
+
+```html
+<ngx-carousel>
+  <ng-template ngxCarouselNextButton>
+    <i class="fas fa-long-arrow-right"></i>
+  </ng-template>
+</ngx-carousel>
+```
+
+### ngxCarouselPreviousButton
+
+To customize a previous button we can use `ngxCarouselPreviousButton` directive.
+
+This template should be placed inside `<ngx-carousel></ngx-carousel>`
+
+```html
+<ngx-carousel>
+  <ng-template ngxCarouselPreviousButton>
+    <i class="fas fa-long-arrow-left"></i>
+  </ng-template>
+</ngx-carousel>
+```
+
 ## Types
+
 ### `NgxCarousel`
+
 ```typescript
 export interface NgxCarousel {
   height: string;
@@ -138,6 +185,7 @@ export interface NgxCarousel {
 ```
 
 ### `NgxCarouselStep`
+
 ```typescript
 export interface NgxCarouselStep {
   bgImage: string;
@@ -153,7 +201,9 @@ export interface NgxCarouselStep {
 ```
 
 ## Sample Code
+
 ```html
+
 <ngx-carousel>
   <ngx-carousel-step bgColor="#3b95b8">
     <ng-template ngxCarouselStepContent>
@@ -183,6 +233,7 @@ export interface NgxCarouselStep {
 ## Contributing
 
 ### How to help
+
 - [Git hub Repo](https://github.com/gns088/ngx-carousel)
 - For bugs and opinions, please [open an issue](https://github.com/gns088/ngx-carousel/issues/new)
 - For pushing changes, please [open a pull request](https://github.com/gns088/ngx-carousel/compare)
