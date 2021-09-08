@@ -1,25 +1,427 @@
-<ngx-carousel>
-  <ngx-carousel-step bgColor="#3b95b8">
-    <ng-template ngxCarouselStepContent>
-      Content
-    </ng-template>
-  </ngx-carousel-step>
-  <ngx-carousel-step bgColor="#cd7312" buttonBg="#3b95b8"></ngx-carousel-step>
-  <ngx-carousel-step bgImage="url(https://picsum.photos/id/1025/1280/720)"></ngx-carousel-step>
-  <ngx-carousel-step bgImage="https://picsum.photos/id/1022/1280/720">
-    <ng-template ngxCarouselStepContent>
-      <div class="step-content">
-        <img src="https://picsum.photos/id/1024/1280/720" alt="Image" width="200px">
-        <h1>Title</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make
-          a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting,
-          remaining essentially unchanged.</p>
+<ul class="nav top-bar  justify-content-between">
+  <li class="nav-item">
+    <h3>Ngx Carousel</h3>
+  </li>
+  <li class="nav-item pull-right">
+    <a class="btn btn-transparent"
+       href="https://github.com/gns088/ngx-carousel" target="_blank">
+      <i class="fas fa-external-link-alt"></i>
+    </a>
+  </li>
+</ul>
+<div style="padding: 20px">
+  <accordion [isAnimated]="true" [closeOthers]="true" class="mt-4">
+    <accordion-group heading="Carousel Configuration">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxFlex="100">
+          <strong>Carousel Container</strong>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="height" class="form-label">Height</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.height"
+                   class="form-control"
+                   id="height" placeholder="Height">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">Width</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.width"
+                   class="form-control"
+                   id="width" placeholder="Width">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
       </div>
-    </ng-template>
-  </ngx-carousel-step>
-</ngx-carousel>
-<div style="height: 100px"></div>
+      <hr>
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxFlex="100">
+          <strong>Looping</strong>
+        </div>
+
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="loop"
+                   [(ngModel)]="carouselConfig.loop">
+            <label class="form-check-label" for="loop">
+              loop
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="autoLoop"
+                   [(ngModel)]="carouselConfig.autoLoop">
+            <label class="form-check-label" for="autoLoop">
+              autoLoop
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="pauseOnHover"
+                   [(ngModel)]="carouselConfig.pauseOnHover">
+            <label class="form-check-label" for="pauseOnHover">
+              pauseOnHover
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">autoLoopTime</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.autoLoopTime"
+                   class="form-control"
+                   id="autoLoopTime" placeholder="autoLoopTime">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+      </div>
+      <hr>
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxFlex="100">
+          <strong>Animation</strong>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="animation"
+                   [(ngModel)]="carouselConfig.animation">
+            <label class="form-check-label" for="animation">
+              animation
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="applyAnimationToSteps"
+                   [(ngModel)]="carouselConfig.applyAnimationToSteps">
+            <label class="form-check-label" for="applyAnimationToSteps">
+              Apply Animation To Steps
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="allowButtonAnimation"
+                   [(ngModel)]="carouselConfig.allowButtonAnimation">
+            <label class="form-check-label" for="allowButtonAnimation">
+              allowButtonAnimation
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">carouselAnimationClass</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.carouselAnimationClass"
+                   class="form-control"
+                   id="carouselAnimationClass" placeholder="carouselAnimationClass">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+      </div>
+      <hr>
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxFlex="100" class="mb-4">
+          <div fxLayout="row wrap" fxLayoutAlign="start center">
+            <strong>Buttons</strong>
+            <div class="form-check ml-4">
+              <input class="form-check-input" type="checkbox" value="" id="outsideButton"
+                     [(ngModel)]="carouselConfig.outsideButton">
+              <label class="form-check-label" for="outsideButton">
+                outsideButton
+              </label>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">previousButtonIconClass</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.previousButtonIconClass"
+                   class="form-control"
+                   id="previousButtonIconClass" placeholder="previousButtonIconClass">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">nextButtonIconClass</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.nextButtonIconClass"
+                   class="form-control"
+                   id="nextButtonIconClass" placeholder="nextButtonIconClass">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">previousButtonClass</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.previousButtonClass"
+                   class="form-control"
+                   id="previousButtonClass" placeholder="previousButtonClass">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">nextButtonClass</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.nextButtonClass"
+                   class="form-control"
+                   id="nextButtonClass" placeholder="nextButtonClass">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">buttonBg</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.buttonBg"
+                   class="form-control"
+                   id="buttonBg" placeholder="buttonBg">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">dotsBg</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.dotsBg"
+                   class="form-control"
+                   id="dotsBg" placeholder="dotsBg">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">dotsClass</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.dotsClass"
+                   class="form-control"
+                   id="dotsClass" placeholder="dotsClass">
+            <span class="hint">try "custom-dot"</span>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+        <div fxLayout="column" fxFlex="30"></div>
+      </div>
+      <hr>
+      <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+        <div fxLayout="column" fxFlex="100">
+          <strong>Extra Config</strong>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="hideOverFlow"
+                   [(ngModel)]="carouselConfig.hideOverFlow">
+            <label class="form-check-label" for="hideOverFlow">
+              Hide OverFlow
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="useKeyboard"
+                   [(ngModel)]="carouselConfig.useKeyboard">
+            <label class="form-check-label" for="useKeyboard">
+              useKeyboard
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="useMouseWheel"
+                   [(ngModel)]="carouselConfig.useMouseWheel">
+            <label class="form-check-label" for="useMouseWheel">
+              useMouseWheel
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="resetOnResize"
+                   [(ngModel)]="carouselConfig.resetOnResize">
+            <label class="form-check-label" for="resetOnResize">
+              resetOnResize
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="showDots"
+                   [(ngModel)]="carouselConfig.showDots">
+            <label class="form-check-label" for="showDots">
+              showDots
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+        <div fxLayout="column" fxFlex="30"></div>
+      </div>
+    </accordion-group>
+    <accordion-group heading="Carousel Step Configuration">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">Carousel Level Step Background Size</label>
+            <input type="text"
+                   [(ngModel)]="carouselConfig.stepBackgroundSize"
+                   class="form-control"
+                   id="stepBackgroundSize" placeholder="Carousel Level Step Background Size">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="step-animation"
+                   [(ngModel)]="carouselStepConfig.animation">
+            <label class="form-check-label" for="step-animation">
+              Animation
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="hideOverlay"
+                   [(ngModel)]="carouselStepConfig.hideOverlay">
+            <label class="form-check-label" for="hideOverlay">
+              hideOverlay
+            </label>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">overlayColor</label>
+            <input type="text"
+                   [(ngModel)]="carouselStepConfig.overlayColor"
+                   class="form-control"
+                   id="overlayColor" placeholder="Overlay Color">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">Overlay Opacity</label>
+            <input type="text"
+                   [(ngModel)]="carouselStepConfig.overlayOpacity"
+                   class="form-control"
+                   id="overlayOpacity" placeholder="Overlay Opacity">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label for="width" class="form-label">Background Size</label>
+            <input type="text"
+                   [(ngModel)]="carouselStepConfig.backgroundSize"
+                   class="form-control"
+                   id="backgroundSize" placeholder="Background Size">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30"></div>
+        <div fxLayout="column" fxFlex="30"></div>
+      </div>
+    </accordion-group>
+    <accordion-group heading="Slides">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center"
+           *ngFor="let item of steps; let index = index;">
+        <div fxLayout="column" fxFlex="100">
+          <strong>Step {{index + 1}}</strong>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label class="form-label">bgColor</label>
+            <input type="text"
+                   [(ngModel)]="item.bgColor"
+                   class="form-control"
+                   placeholder="bgColor">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label class="form-label">buttonBg</label>
+            <input type="text"
+                   [(ngModel)]="item.buttonBg"
+                   class="form-control"
+                   placeholder="buttonBg">
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30">
+          <div class="mb-3">
+            <label class="form-label">bgImage</label>
+            <input type="text"
+                   [(ngModel)]="item.bgImage"
+                   class="form-control"
+                   placeholder="bgImage">
+          </div>
+        </div>
+        <div fxLayout="column">
+          <button class="btn btn-sm btn-outline-danger mt-2" (click)="removeStep(index)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="end center">
+        <button class="btn btn-outline-primary" (click)="onAddStep()">Add Step</button>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <div class="mt-4">
+    <ngx-carousel
+      [height]="carouselConfig.height"
+      [width]="carouselConfig.width"
+      [applyAnimationToSteps]="carouselConfig.applyAnimationToSteps"
+      [animation]="carouselConfig.animation"
+      [loop]="carouselConfig.loop"
+      [autoLoop]="carouselConfig.autoLoop"
+      [autoLoopTime]="carouselConfig.autoLoopTime"
+      [outsideButton]="carouselConfig.outsideButton"
+      [allowButtonAnimation]="carouselConfig.allowButtonAnimation"
+      [showDots]="carouselConfig.showDots"
+      [previousButtonClass]="carouselConfig.previousButtonClass"
+      [nextButtonClass]="carouselConfig.nextButtonClass"
+      [previousButtonIconClass]="carouselConfig.previousButtonIconClass"
+      [nextButtonIconClass]="carouselConfig.nextButtonIconClass"
+      [buttonBg]="carouselConfig.buttonBg"
+      [dotsBg]="carouselConfig.dotsBg"
+      [dotsClass]="carouselConfig.dotsClass"
+      [hideOverFlow]="carouselConfig.hideOverFlow"
+      [carouselAnimationClass]="carouselConfig.carouselAnimationClass"
+      [useKeyboard]="carouselConfig.useKeyboard"
+      [useMouseWheel]="carouselConfig.useMouseWheel"
+      [pauseOnHover]="carouselConfig.pauseOnHover"
+      [resetOnResize]="carouselConfig.resetOnResize"
+      [stepBackgroundSize]="carouselConfig.stepBackgroundSize"
+      (onContentInIt)="onEvent('onContentInIt')"
+      (onStepChange)="onEvent('onStepChange', $event)">
+      <ngx-carousel-step *ngFor="let item of steps; let stepIndex = index;"
+                         [bgColor]="item.bgColor"
+                         [buttonBg]="item.buttonBg"
+                         [bgImage]="item.bgImage"
+                         [animation]="carouselStepConfig.animation"
+                         [hideOverlay]="carouselStepConfig.hideOverlay"
+                         [overlayColor]="carouselStepConfig.overlayColor"
+                         [overlayOpacity]="carouselStepConfig.overlayOpacity"
+                         [backgroundSize]="carouselStepConfig.backgroundSize">
+        <ng-template ngxCarouselStepContent>
+          <div class="step-content">
+            <img src="https://picsum.photos/id/1024/1280/720" alt="Image" width="200px">
+            <h1>Title - {{stepIndex + 1}}</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's
+              standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+              to
+              make
+              a type specimen book. It has survived not only five centuries, but also the leap into electronic
+              typesetting,
+              remaining essentially unchanged.</p>
+          </div>
+        </ng-template>
+      </ngx-carousel-step>
+    </ngx-carousel>
+  </div>
+  <div class="mt-4">
+    <h5>Sample Code</h5>
+    <div class="code-block">
+      <button class="btn btn-outline"
+              [tooltip]="copied ? 'Copied' : 'Copy to clipboard'"
+              placement="left"
+              (click)="copyToClipboard()">
+        <i class="fa fa-file"></i>
+      </button>
+      <pre>{{codeString}}</pre>
+    </div>
+  </div>
+</div>

@@ -22,6 +22,7 @@
     }
 
     .ngx-carousel-step-overlay {
+      pointer-events: none;
       position: absolute;
       height: 100%;
       width: 100%;
@@ -34,6 +35,7 @@
       text-align: center;
       padding: 20px;
       margin: 0 auto;
+      z-index: 99;
     }
 
   }

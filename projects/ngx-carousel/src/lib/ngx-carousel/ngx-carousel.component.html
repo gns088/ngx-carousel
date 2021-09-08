@@ -1,4 +1,5 @@
-<div class="ngx-carousel {{animation ? carouselAnimationClass : null}}"
+<div *ngIf="stepList.length"
+     class="ngx-carousel {{animation ? carouselAnimationClass : null}}"
      [class.overflow-hidden]="hideOverFlow"
      [ngStyle]="{
                 height: height,
@@ -12,7 +13,7 @@
        (right)="next()"
        (left)="previous()"
        class="ngx-carousel-step ngx-carousel-step-{{stepIndex}}
-        {{(animation && applyAnimationToSteps) || step.animation ? carouselAnimationClass : null}}"
+        {{(animation && applyAnimationToSteps && step.animation) ? carouselAnimationClass : null}}"
        [ngStyle]="{
                     'height.px': height,
                     'background-image': step.bgImage ? step.bgImage : '',
@@ -23,8 +24,7 @@
                     'display-none': stepIndex !== selectedIndex,
                     'display-block': stepIndex === selectedIndex,
                     'image-background-style': !!step.bgImage
-                  }"
-       #stepDivRef>
+                  }">
     <div class="ngx-carousel-step-content">
       <ng-container *ngTemplateOutlet="step.stepContentDirectiveTemplateRef?.templateRef"></ng-container>
     </div>
@@ -76,7 +76,7 @@
     <span *ngFor="let step of stepList; let stepIndex = index;"
           [style.background-color]="dotsBg"
           [class.active]="stepIndex === selectedIndex"
-          class="ngx-carousel-dot" (click)="slideTo(stepIndex)">
+          class="ngx-carousel-dot {{dotsClass}}" (click)="slideTo(stepIndex)">
     </span>
   </div>
 </div>

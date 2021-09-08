@@ -21,5 +21,6 @@ export interface NgxCarousel {
   nextButtonIconClass: string;
   buttonBg: string;
   dotsBg: string;
+  dotsClass: string;
   stepBackgroundSize: string;
 }

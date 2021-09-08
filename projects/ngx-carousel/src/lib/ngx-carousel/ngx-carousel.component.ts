@@ -180,6 +180,12 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   dotsBg = '#FFFFFF';
 
   /**
+   * To apply classes dots buttons
+   */
+  @Input()
+  dotsClass: string;
+
+  /**
    * to set background size to step
    * default: cover
    */
@@ -246,7 +252,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
    * host listener to stop timer if mouse is on the carousel
    */
   @HostListener('mouseenter')
-  private onMouseEnter(): void {
+  onMouseEnter(): void {
     if (this.pauseOnHover) {
       this.stopTimer();
     }
@@ -256,7 +262,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
    * host listener to start timer if mouse is on the carousel
    */
   @HostListener('mouseleave')
-  private onMouseLeave(): void {
+  onMouseLeave(): void {
     if (this.pauseOnHover) {
       this.startTimer();
     }
@@ -266,7 +272,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
    * host listener to change step if user scroll using mouse wheel when mouse is on carousel
    */
   @HostListener('mousewheel', ['$event'])
-  private onMouseWheel(event: WheelEvent): void {
+  onMouseWheel(event: WheelEvent): void {
     if (this.useMouseWheel) {
       event.preventDefault(); // prevent window to scroll
       const Δ = Math.sign(event.deltaY);
@@ -283,7 +289,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
    * host listener to change step 0 if any resize event is fired
    */
   @HostListener('window:resize', ['$event'])
-  private onResize(event: Event): void {
+  onResize(event: Event): void {
     // Reset carousel when window is resized
     // in order to avoid major glitches.
     if (this.resetOnResize) {

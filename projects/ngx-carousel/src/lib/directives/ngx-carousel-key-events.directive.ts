@@ -35,7 +35,7 @@ export class NgxCarouselKeyEventsDirective {
    * host listener to make isHover true if mouse is on carousel
    */
   @HostListener('mouseenter')
-  private onMouseEnter(): void {
+  onMouseEnter(): void {
     this.isHover = true;
   }
 
@@ -43,7 +43,7 @@ export class NgxCarouselKeyEventsDirective {
    * host listener to make isHover false if mouse is not on carousel
    */
   @HostListener('mouseleave')
-  private onMouseLeave(): void {
+  onMouseLeave(): void {
     this.isHover = false;
   }
 

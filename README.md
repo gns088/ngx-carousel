@@ -1,6 +1,7 @@
 # NGX Carousel
 
 [![npm version](https://badge.fury.io/js/@gns088%2Fngx-carousel.svg)](https://badge.fury.io/js/@gns088%2Fngx-carousel)
+[![Live demo](https://img.shields.io/badge/demo-blue.svg)](https://gns088.github.io/ngx-carousel/)
 
 ## About
 
@@ -69,6 +70,7 @@ import { NgxCarouselComponent, NgxCarouselStepComponent } from '@gns088/ngx-caro
 | `nextButtonIconClass`        | `string`          | To apply icon classes to next button. | `fas fa-chevron-right`            |
 | `buttonBg`        | `string`          | To apply background color to button. | `transparent`            |
 | `dotsBg`        | `string`          | To apply background dots buttons. | `#FFFFFF`            |
+| `dotsClass`        | `string`          | To apply classes dots buttons |          |
 | `stepBackgroundSize`        | `string`          | To set background size to step. when we set image in step background, if image not fits in container then we can use this config | `cover`            |
 
 | Output                |  Type              | Description                                                                |
@@ -180,6 +182,7 @@ export interface NgxCarousel {
   nextButtonIconClass: string;
   buttonBg: string;
   dotsBg: string;
+  dotsClass: string;
   stepBackgroundSize: string;
 }
 ```

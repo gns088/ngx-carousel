@@ -70,5 +70,8 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
     if (this.bgImage && !this.bgImage.includes('url')) {
       this.bgImage = `url("${this.bgImage}")`;
     }
+    if (!this.bgColor) {
+      this.bgColor = '#e3dddd';
+    }
   }
 }

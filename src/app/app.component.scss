@@ -2,7 +2,33 @@ button {
   cursor: pointer;
 }
 
+.code-block {
+  background-color: rgba(7, 3, 3, 0.22);
+  position: relative;
+
+  .btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}
+
 :host::ng-deep {
+  .top-bar {
+    background: rgba(7, 3, 3, 0.22);
+    padding: 10px;
+  }
+
+  ngx-carousel {
+    .ngx-carousel-dot-container {
+      .ngx-carousel-dot {
+        &.custom-dot {
+          border-radius: 0 !important;
+        }
+      }
+    }
+  }
+
   .testing {
     span {
       border-radius: 5px !important;
