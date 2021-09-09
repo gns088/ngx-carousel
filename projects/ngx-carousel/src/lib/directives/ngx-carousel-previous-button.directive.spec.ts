@@ -5,10 +5,12 @@ describe('NgxCarouselPreviousButtonDirective', () => {
   // tslint:disable-next-line:new-parens
   const templateRef: TemplateRef<NgxCarouselPreviousButtonDirective> = new class extends TemplateRef<NgxCarouselPreviousButtonDirective> {
     createEmbeddedView(context: NgxCarouselPreviousButtonDirective): EmbeddedViewRef<NgxCarouselPreviousButtonDirective> {
+      // @ts-ignore
       return undefined;
     }
 
     get elementRef(): ElementRef {
+      // @ts-ignore
       return undefined;
     }
   };

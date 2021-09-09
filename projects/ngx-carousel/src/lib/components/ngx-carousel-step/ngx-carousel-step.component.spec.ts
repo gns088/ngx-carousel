@@ -47,7 +47,7 @@ describe('NgxCarouselStepComponent', () => {
   });
 
   it('should bgColor not passed', () => {
-    component.bgColor = undefined;
+    component.bgColor = '';
     component.ngOnInit();
     expect(component.bgColor).toBe('#e3dddd');
   });

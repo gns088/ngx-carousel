@@ -81,14 +81,14 @@ describe('NgxCarouselComponent', () => {
     it('should start timer', () => {
       component.autoLoop = true;
       component.startTimer();
-      expect(component.loop).toBeTrue();
+      expect(component.loop).toBe(true);
     });
 
     it('should not start timer', () => {
       component.loop = false;
       component.autoLoop = false;
       component.startTimer();
-      expect(component.loop).toBeFalse();
+      expect(component.loop).toBe(false);
     });
   });
 

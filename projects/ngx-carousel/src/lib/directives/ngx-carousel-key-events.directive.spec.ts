@@ -10,12 +10,12 @@ describe('NgxCarouselKeyEventsDirective', () => {
 
   it('should set isHover true on onMouseEnter', () => {
     directive.onMouseEnter();
-    expect(directive.isHover).toBeTrue();
+    expect(directive.isHover).toBe(true);
   });
 
   it('should set isHover false on onMouseEnter', () => {
     directive.onMouseLeave();
-    expect(directive.isHover).toBeFalse();
+    expect(directive.isHover).toBe(false);
   });
 
   describe('onKeyUp', () => {
