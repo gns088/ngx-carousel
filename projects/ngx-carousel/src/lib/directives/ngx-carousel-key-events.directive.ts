@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Directive({
   selector: '[ngxCarouselKeyEvents]'
@@ -26,10 +26,7 @@ export class NgxCarouselKeyEventsDirective {
   /**
    * to check whether mouse is on carousel or not
    */
-  private isHover = false;
-
-  constructor(private elRef: ElementRef) {
-  }
+  public isHover = false;
 
   /**
    * host listener to make isHover true if mouse is on carousel
@@ -53,7 +50,7 @@ export class NgxCarouselKeyEventsDirective {
    */
   @HostListener('window:keyup', ['$event'])
   public onKeyUp(event: KeyboardEvent): void {
-    if (this.enableEvent && (this.isHover || this.elRef.nativeElement === document.activeElement)) {
+    if (this.enableEvent && this.isHover) {
       event.preventDefault();
       if (event.code === 'ArrowRight') {
         this.right.emit();

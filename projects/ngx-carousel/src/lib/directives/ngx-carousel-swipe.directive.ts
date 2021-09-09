@@ -25,9 +25,9 @@ export class NgxCarouselSwipeDirective {
     this.swipe(e, when);
   }
 
-  swipe(e: TouchEvent, when: string): void {
+  swipe(touchEvent: TouchEvent, when: string): void {
 
-    const cord: [number, number] = [e.changedTouches[0].clientX, e.changedTouches[0].clientY];
+    const cord: [number, number] = [touchEvent.changedTouches[0].clientX, touchEvent.changedTouches[0].clientY];
     const time = new Date().getTime();
 
     if (when === 'start') {
@@ -40,8 +40,8 @@ export class NgxCarouselSwipeDirective {
       if (duration < 1000 //
         && Math.abs(direction[0]) > 30 // Long enough
         && Math.abs(direction[0]) > Math.abs(direction[1] * 3)) { // Horizontal enough
-        const swipeDir = direction[0] < 0 ? 'next' : 'previous';
-        if (swipeDir === 'next') {
+        const swipeDir = direction[0] < 0 ? 'right' : 'left';
+        if (swipeDir === 'right') {
           this.right.emit();
         } else {
           this.left.emit();

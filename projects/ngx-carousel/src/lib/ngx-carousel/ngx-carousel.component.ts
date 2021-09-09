@@ -221,7 +221,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   /**
    * subscription
    */
-  private timerSubscription: Subscription;
+  public timerSubscription: Subscription;
 
 
   /**
@@ -288,8 +288,8 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   /**
    * host listener to change step 0 if any resize event is fired
    */
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
+  @HostListener('window:resize')
+  onResize(): void {
     // Reset carousel when window is resized
     // in order to avoid major glitches.
     if (this.resetOnResize) {
@@ -319,7 +319,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   /**
    * start autoplay time subscriber
    */
-  private startTimer(): void {
+  startTimer(): void {
     if (this.autoLoop) {
       this.loop = true;
       const timerSub = timer(this.autoLoopTime, this.autoLoopTime);
@@ -332,7 +332,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   /**
    * stop autoplay time subscriber
    */
-  private stopTimer(): void {
+  stopTimer(): void {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
@@ -346,7 +346,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
    * return text color for provided background color
    */
   getButtonTextColor(color: string): string {
-    return color ? GenerateTextColor(color) : null;
+    return color ? GenerateTextColor(color) : '';
   }
 
   /**

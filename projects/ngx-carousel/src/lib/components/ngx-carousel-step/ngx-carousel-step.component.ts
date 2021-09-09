@@ -20,10 +20,9 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
 
   /**
    * step background color of buttons (overrides <ngx-carousel> buttonGb config)
-   * default: transparent
    */
   @Input()
-  public buttonBg = 'transparent';
+  public buttonBg: string;
 
   /**
    * To allow animation at step level

@@ -194,7 +194,8 @@
           "options": {
             "main": "projects/ngx-carousel/src/test.ts",
             "tsConfig": "projects/ngx-carousel/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-carousel/karma.conf.js"
+            "karmaConfig": "projects/ngx-carousel/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {

@@ -16,8 +16,8 @@ export class AppComponent {
     animation: true,
     loop: false,
     autoLoop: false,
-    autoLoopTime: 3000,
-    outsideButton: false,
+    autoLoopTime: 1000,
+    outsideButton: true,
     allowButtonAnimation: true,
     showDots: true,
     previousButtonClass: null,
@@ -48,7 +48,6 @@ export class AppComponent {
     },
     {
       bgColor: '#cd7312',
-      buttonBg: '',
     },
     {
       bgImage: 'url(https://picsum.photos/id/1025/1280/720)'
