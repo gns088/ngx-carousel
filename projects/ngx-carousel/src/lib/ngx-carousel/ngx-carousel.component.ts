@@ -323,9 +323,7 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
     if (this.autoLoop) {
       this.loop = true;
       const timerSub = timer(this.autoLoopTime, this.autoLoopTime);
-      this.timerSubscription = timerSub.subscribe(time => {
-        this.next();
-      });
+      this.timerSubscription = timerSub.subscribe(() => this.next());
     }
   }
 
