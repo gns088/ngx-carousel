@@ -15,7 +15,7 @@
        class="ngx-carousel-step ngx-carousel-step-{{stepIndex}}
         {{(animation && applyAnimationToSteps && step.animation) ? carouselAnimationClass : null}}"
        [ngStyle]="{
-                    'height.px': height,
+                    height: height,
                     'background-image': step.bgImage ? step.bgImage : '',
                     'background-color': step.bgColor,
                     'background-size': step.backgroundSize || stepBackgroundSize
@@ -24,8 +24,12 @@
                     'display-none': stepIndex !== selectedIndex,
                     'display-block': stepIndex === selectedIndex,
                     'image-background-style': !!step.bgImage
-                  }">
-    <div class="ngx-carousel-step-content">
+                  }"
+                  #stepEleRef>
+    <div class="ngx-carousel-step-content"
+         [ngStyle]="{
+            'height.px': stepEleRef.offsetHeight - 40
+         }">
       <ng-container *ngTemplateOutlet="step.stepContentDirectiveTemplateRef?.templateRef"></ng-container>
     </div>
     <div *ngIf="!step.hideOverlay"
