@@ -1,6 +1,7 @@
 import { Component, ContentChild, Input, OnInit } from '@angular/core';
 import { NgxCarouselStepContentDirective } from '../../directives';
 import { NgxCarouselStep } from '../../types';
+import { NgxCarouselStepCaptionDirective } from '../../directives/ngx-carousel-step-caption.directive';
 
 @Component({selector: 'ngx-carousel-step', template: ''})
 export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
@@ -64,6 +65,12 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
    */
   @ContentChild(NgxCarouselStepContentDirective, {static: false})
   stepContentDirectiveTemplateRef: NgxCarouselStepContentDirective;
+
+  /**
+   * template reference for caption of steps
+   */
+  @ContentChild(NgxCarouselStepCaptionDirective, {static: false})
+  stepCaptionDirectiveTemplateRef: NgxCarouselStepCaptionDirective;
 
   ngOnInit(): void {
     if (this.bgImage && !this.bgImage.includes('url')) {

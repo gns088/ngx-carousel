@@ -9,6 +9,7 @@ import {
   NgxCarouselStepContentDirective,
   NgxCarouselSwipeDirective
 } from './directives';
+import { NgxCarouselStepCaptionDirective } from './directives/ngx-carousel-step-caption.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {
     NgxCarouselNextButtonDirective,
     NgxCarouselPreviousButtonDirective,
     NgxCarouselStepContentDirective,
+    NgxCarouselStepCaptionDirective,
     NgxCarouselKeyEventsDirective,
     NgxCarouselSwipeDirective,
   ],
@@ -26,6 +28,7 @@ import {
     NgxCarouselNextButtonDirective,
     NgxCarouselPreviousButtonDirective,
     NgxCarouselStepContentDirective,
+    NgxCarouselStepCaptionDirective,
     NgxCarouselKeyEventsDirective,
     NgxCarouselSwipeDirective,
   ],

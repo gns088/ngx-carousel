@@ -20,6 +20,7 @@ export class AppComponent {
     outsideButton: true,
     allowButtonAnimation: true,
     showDots: true,
+    showControls: true,
     previousButtonClass: null,
     nextButtonClass: null,
     previousButtonIconClass: 'fas fa-long-arrow-left',
@@ -27,10 +28,11 @@ export class AppComponent {
     buttonBg: '#3b95b8',
     dotsBg: '#FFFFFF',
     dotsClass: '',
+    dotsType: 'dot',
     hideOverFlow: false,
     carouselAnimationClass: 'ngx-carousel-fade-animation',
     useKeyboard: true,
-    useMouseWheel: true,
+    useMouseWheel: false,
     pauseOnHover: true,
     resetOnResize: false,
     stepBackgroundSize: '100% 100%',
@@ -57,6 +59,8 @@ export class AppComponent {
     }
   ];
   copied = false;
+  showCaptions = true;
+  showContent = false;
 
   get codeString(): string {
     return `<ngx-carousel>

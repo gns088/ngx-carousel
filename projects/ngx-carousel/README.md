@@ -64,13 +64,15 @@ import { NgxCarouselComponent, NgxCarouselStepComponent } from '@gns088/ngx-caro
 | `pauseOnHover`        | `boolean`          | When user hover mouse on carousel it will stop auto loop. | `true`            |
 | `resetOnResize`        | `boolean`          | Reset to step 0 on window resize event. | `true`            |
 | `showDots`        | `boolean`          | Show / Hide dots at bottom of carousel. | `true`            |
+| `showControls`        | `boolean`          | Show / Hide next and previous button. | `true`            |
 | `previousButtonClass`        | `string`          | To apply other classes to previous button. |             |
 | `nextButtonClass`        | `string`          | To apply other classes to next button. |             |
 | `previousButtonIconClass`        | `string`          | To apply icon classes to previous button. | `fas fa-chevron-left`            |
 | `nextButtonIconClass`        | `string`          | To apply icon classes to next button. | `fas fa-chevron-right`            |
 | `buttonBg`        | `string`          | To apply background color to button. | `transparent`            |
 | `dotsBg`        | `string`          | To apply background dots buttons. | `#FFFFFF`            |
-| `dotsClass`        | `string`          | To apply classes dots buttons |          |
+| `dotsClass`        | `string`          | To apply classes dots buttons. |          |
+| `dotsType`        | `box or dot`          | To change design of dots. |    `dot`      |
 | `stepBackgroundSize`        | `string`          | To set background size to step. when we set image in step background, if image not fits in container then we can use this config | `cover`            |
 
 | Output                |  Type              | Description                                                                |
@@ -110,6 +112,23 @@ import { NgxCarouselComponent, NgxCarouselStepComponent } from '@gns088/ngx-caro
 
 ## Templates
 
+### ngxCarouselStepCaption
+
+To add caption inside `<ngx-carousel-step></ngx-carousel-step>` we need to add `ngxCarouselStepCaption`.
+
+This template should be placed inside `<ngx-carousel-step></ngx-carousel-step>`
+
+```html
+
+<ngx-carousel>
+  <ngx-carousel-step>
+    <ng-template ngxCarouselStepCaption>
+      Caption
+    </ng-template>
+  </ngx-carousel-step>
+</ngx-carousel>
+```
+
 ### ngxCarouselStepContent
 
 To add content inside `<ngx-carousel-step></ngx-carousel-step>` we need to add `ngxCarouselStepContent`.
@@ -117,6 +136,7 @@ To add content inside `<ngx-carousel-step></ngx-carousel-step>` we need to add `
 This template should be placed inside `<ngx-carousel-step></ngx-carousel-step>`
 
 ```html
+
 <ngx-carousel>
   <ngx-carousel-step>
     <ng-template ngxCarouselStepContent>
@@ -133,6 +153,7 @@ To customize a next button we can use `ngxCarouselNextButton` directive.
 This template should be placed inside `<ngx-carousel></ngx-carousel>`
 
 ```html
+
 <ngx-carousel>
   <ng-template ngxCarouselNextButton>
     <i class="fas fa-long-arrow-right"></i>
@@ -147,6 +168,7 @@ To customize a previous button we can use `ngxCarouselPreviousButton` directive.
 This template should be placed inside `<ngx-carousel></ngx-carousel>`
 
 ```html
+
 <ngx-carousel>
   <ng-template ngxCarouselPreviousButton>
     <i class="fas fa-long-arrow-left"></i>
@@ -176,6 +198,7 @@ export interface NgxCarousel {
   pauseOnHover: boolean;
   resetOnResize: boolean;
   showDots: boolean;
+  showControls: boolean;
   previousButtonClass: string;
   nextButtonClass: string;
   previousButtonIconClass: string;
@@ -183,6 +206,7 @@ export interface NgxCarousel {
   buttonBg: string;
   dotsBg: string;
   dotsClass: string;
+  dotsType: 'box' | 'dot';
   stepBackgroundSize: string;
 }
 ```

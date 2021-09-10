@@ -25,12 +25,19 @@
                     'display-block': stepIndex === selectedIndex,
                     'image-background-style': !!step.bgImage
                   }"
-                  #stepEleRef>
+       #stepEleRef>
     <div class="ngx-carousel-step-content"
          [ngStyle]="{
-            'height.px': stepEleRef.offsetHeight - 40
+            'height.px': stepEleRef.offsetHeight - 40,
+            color: step.bgColor ? getButtonTextColor(step.bgColor) : ''
          }">
       <ng-container *ngTemplateOutlet="step.stepContentDirectiveTemplateRef?.templateRef"></ng-container>
+    </div>
+    <div class="ngx-carousel-step-caption"
+         [ngStyle]="{
+            color: step.bgColor ? getButtonTextColor(step.bgColor) : ''
+         }" *ngIf="step.stepCaptionDirectiveTemplateRef?.templateRef">
+      <ng-container *ngTemplateOutlet="step.stepCaptionDirectiveTemplateRef?.templateRef"></ng-container>
     </div>
     <div *ngIf="!step.hideOverlay"
          class="ngx-carousel-step-overlay"
@@ -38,49 +45,53 @@
          [style.opacity]="step.overlayOpacity">
     </div>
   </div>
-  <a class="ngx-carousel-previous-button previous-button {{previousButtonClass}}"
-     *ngIf="loop || selectedIndex !== 0"
-     [ngClass]="{
+  <ng-container *ngIf="showControls">
+    <a class="ngx-carousel-previous-button previous-button {{previousButtonClass}}"
+       *ngIf="loop || selectedIndex !== 0"
+       [ngClass]="{
                   'previous-button-outside': outsideButton,
                   'allow-button-animation': allowButtonAnimation
                 }"
-     (click)="previous()">
-    <ng-container *ngIf="!previousButtonDirectiveTemplateRef">
+       (click)="previous()">
+      <ng-container *ngIf="!previousButtonDirectiveTemplateRef">
       <span class="icon-span" [ngStyle]="{
           'background-color': selectedStep?.buttonBg || buttonBg || '#FFFFFF',
           color: getButtonTextColor(selectedStep?.buttonBg || buttonBg || '#FFFFFF')
         }">
         <i class="{{previousButtonIconClass}}"></i>
       </span>
-    </ng-container>
-    <ng-container *ngIf="previousButtonDirectiveTemplateRef?.templateRef">
-      <ng-container *ngTemplateOutlet="previousButtonDirectiveTemplateRef?.templateRef"></ng-container>
-    </ng-container>
-  </a>
-  <a class="ngx-carousel-previous-button next-button {{nextButtonClass}}"
-     *ngIf="loop || selectedIndex !== stepList.length - 1"
-     [ngClass]="{
+      </ng-container>
+      <ng-container *ngIf="previousButtonDirectiveTemplateRef?.templateRef">
+        <ng-container *ngTemplateOutlet="previousButtonDirectiveTemplateRef?.templateRef"></ng-container>
+      </ng-container>
+    </a>
+    <a class="ngx-carousel-previous-button next-button {{nextButtonClass}}"
+       *ngIf="loop || selectedIndex !== stepList.length - 1"
+       [ngClass]="{
                   'next-button-outside': outsideButton,
                   'allow-button-animation': allowButtonAnimation
                 }"
-     (click)="next()">
-    <ng-container *ngIf="!nextButtonDirectiveTemplateRef">
+       (click)="next()">
+      <ng-container *ngIf="!nextButtonDirectiveTemplateRef">
       <span class="icon-span" [ngStyle]="{
           'background-color': selectedStep?.buttonBg || buttonBg || '#FFFFFF',
           color: getButtonTextColor(selectedStep?.buttonBg || buttonBg || '#FFFFFF')
         }">
         <i class="{{nextButtonIconClass}}"></i>
       </span>
-    </ng-container>
-    <ng-container *ngIf="nextButtonDirectiveTemplateRef?.templateRef">
-      <ng-container *ngTemplateOutlet="nextButtonDirectiveTemplateRef?.templateRef"></ng-container>
-    </ng-container>
-  </a>
+      </ng-container>
+      <ng-container *ngIf="nextButtonDirectiveTemplateRef?.templateRef">
+        <ng-container *ngTemplateOutlet="nextButtonDirectiveTemplateRef?.templateRef"></ng-container>
+      </ng-container>
+    </a>
+  </ng-container>
   <div *ngIf="showDots" class="ngx-carousel-dot-container">
     <span *ngFor="let step of stepList; let stepIndex = index;"
           [style.background-color]="dotsBg"
           [class.active]="stepIndex === selectedIndex"
-          class="ngx-carousel-dot {{dotsClass}}" (click)="slideTo(stepIndex)">
+          [class.ngx-carousel-indicator]="dotsType === 'box'"
+          [class.ngx-carousel-dot]="dotsType === 'dot'"
+          class="{{dotsClass}}" (click)="slideTo(stepIndex)">
     </span>
   </div>
 </div>

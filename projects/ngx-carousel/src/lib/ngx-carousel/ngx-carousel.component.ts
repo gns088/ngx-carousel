@@ -140,6 +140,13 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   showDots = true;
 
   /**
+   * Show / Hide next and previous button
+   * default: true
+   */
+  @Input()
+  showControls = true;
+
+  /**
    * to apply other classes to previous button
    */
   @Input()
@@ -184,6 +191,13 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
    */
   @Input()
   dotsClass: string;
+
+  /**
+   * To change design of dots
+   * default: dot
+   */
+  @Input()
+  dotsType: 'box' | 'dot' = 'dot';
 
   /**
    * to set background size to step
