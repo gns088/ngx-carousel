@@ -19,7 +19,21 @@ button {
     padding: 10px;
   }
 
+
   ngx-carousel {
+
+    .ngx-carousel-step {
+      &.step1BG {
+        background-color: #3b95b8;
+      }
+    }
+
+    .button-bg {
+      .icon-span {
+        background-color: #3b95b8;
+      }
+    }
+
     .ngx-carousel-dot-container {
       .ngx-carousel-dot {
         &.custom-dot {

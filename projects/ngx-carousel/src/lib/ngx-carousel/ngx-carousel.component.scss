@@ -16,58 +16,94 @@
   }
 }
 
-.ngx-carousel {
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str, $time) {
+  -webkit-animation-name: #{$str};
+  -webkit-animation-duration: #{$time};
+  -moz-animation-name: #{$str};
+  -moz-animation-duration: #{$time};
+  -ms-animation-name: #{$str};
+  -ms-animation-duration: #{$time};
+  -o-animation-name: #{$str};
+  -o-animation-duration: #{$time};
+  animation-name: #{$str};
+  animation-duration: #{$time};
+}
+
+.ngx-carousel-container {
   position: relative;
   margin: auto;
 
-  &.overflow-hidden {
-    overflow: hidden;
-  }
+  .ngx-carousel {
+    position: relative;
+    margin: auto;
 
-  .ngx-carousel-step {
-    height: 100%;
-
-    &.display-none {
-      display: none;
-    }
-
-    &.display-block {
-      display: block !important;
-    }
-
-    &.image-background-style {
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .ngx-carousel-step-overlay {
-      pointer-events: none;
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      z-index: auto;
-      top: 0;
-    }
-
-    .ngx-carousel-step-content {
-      width: 90%;
-      text-align: center;
-      padding: 20px;
-      margin: 0 auto;
+    &.overflow-hidden {
       overflow: hidden;
-      overflow-y: auto;
-      @include ngx-transition(transform 0.6s ease-in-out);
     }
 
-    .ngx-carousel-step-caption {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      @include ngx-transition(transform 0.6s ease-in-out);
-    }
+    .ngx-carousel-step {
+      height: 100%;
 
+      &.display-none {
+        display: none;
+      }
+
+      &.display-block {
+        display: block !important;
+      }
+
+      &.image-background-style {
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .ngx-carousel-step-overlay {
+        pointer-events: none;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: auto;
+        top: 0;
+      }
+
+      .ngx-carousel-step-content {
+        width: 90%;
+        text-align: center;
+        padding: 20px;
+        margin: 0 auto;
+        overflow: hidden;
+        overflow-y: auto;
+        @include ngx-transition(transform 0.6s ease-in-out);
+      }
+
+      .ngx-carousel-step-caption {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        @include ngx-transition(transform 0.6s ease-in-out);
+      }
+
+    }
   }
 
   .ngx-carousel-previous-button, .ngx-carousel-previous-button {
@@ -169,26 +205,15 @@
 
 
 .ngx-carousel-fade-animation {
-  -webkit-animation-name: ngx-carousel-fade-animation;
-  -webkit-animation-duration: 2s;
-  animation-name: ngx-carousel-fade-animation;
-  animation-duration: 2s;
+  @include animation(ngx-carousel-fade-animation, 2s);
 }
 
-@-webkit-keyframes ngx-carousel-fade-animation {
+@include keyframes(ngx-carousel-fade-animation) {
   from {
-    opacity: .4
+    opacity: .2
   }
   to {
     opacity: 1
   }
 }
 
-@keyframes ngx-carousel-fade-animation {
-  from {
-    opacity: .4
-  }
-  to {
-    opacity: 1
-  }
-}

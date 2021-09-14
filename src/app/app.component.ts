@@ -21,16 +21,17 @@ export class AppComponent {
     allowButtonAnimation: true,
     showDots: true,
     showControls: true,
-    previousButtonClass: null,
-    nextButtonClass: null,
+    previousButtonClass: 'button-bg',
+    nextButtonClass: 'button-bg',
     previousButtonIconClass: 'fas fa-long-arrow-left',
     nextButtonIconClass: 'fas fa-long-arrow-right',
     buttonBg: '#3b95b8',
     dotsBg: '#FFFFFF',
     dotsClass: '',
-    dotsType: 'dot',
-    hideOverFlow: false,
+    dotsType: 'box',
+    hideOverFlow: true,
     carouselAnimationClass: 'ngx-carousel-fade-animation',
+    // carouselAnimationClass: 'animate__animated animate__fadeInLeft',
     useKeyboard: true,
     useMouseWheel: false,
     pauseOnHover: true,
@@ -46,7 +47,8 @@ export class AppComponent {
   };
   steps: any[] = [
     {
-      bgColor: '#3b95b8',
+      // bgColor: '#3b95b8',
+      classes: 'step1BG'
     },
     {
       bgColor: '#cd7312',

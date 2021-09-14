@@ -103,12 +103,14 @@ import { NgxCarouselComponent, NgxCarouselStepComponent } from '@gns088/ngx-caro
 | ---------------- | --------- | ----------------------------- | :-----------: |
 | `bgImage`        | `string`  | To set background image of steps.   |        |
 | `bgColor`        | `string`  | To set background color of step.   | `#e3dddd`       |
+| `noBgColor`      | `boolean` | To remove background at step level.   | `false`       |
 | `buttonBg`       | `string`  | Step background color of buttons (overrides <ngx-carousel> buttonGb config).   |       |
 | `animation`      | `boolean` | To allow animation at step level.   | `true`       |
 | `hideOverlay`    | `boolean` | Hide step overlay.   | `false`       |
 | `overlayColor`   | `string`  | Step overlay color.   | `#00000040`       |
 | `overlayOpacity` | `string`  | Step overlay Opacity.   | `0.3`       |
 | `backgroundSize` | `string`  | To set background size to step.   |        |
+| `classes` | `string`  | To set classes to step.   |        |
 
 ## Templates
 
@@ -217,12 +219,14 @@ export interface NgxCarousel {
 export interface NgxCarouselStep {
   bgImage: string;
   bgColor: string;
+  noBgColor: boolean;
   buttonBg: string;
   animation: boolean;
   hideOverlay: boolean;
   overlayColor: string;
   overlayOpacity: string;
   backgroundSize: string;
+  classes: string;
 }
 
 ```

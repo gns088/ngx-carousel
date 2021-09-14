@@ -26,6 +26,12 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
   public buttonBg: string;
 
   /**
+   * To remove background at step level
+   * default: true
+   */
+  @Input()
+  public noBgColor = false;
+  /**
    * To allow animation at step level
    * default: true
    */
@@ -61,6 +67,12 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
   public backgroundSize;
 
   /**
+   * To set classes to step
+   * default: undefined
+   */
+  @Input() public classes;
+
+  /**
    * template reference for content of steps
    */
   @ContentChild(NgxCarouselStepContentDirective, {static: false})
@@ -78,6 +90,9 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
     }
     if (!this.bgColor) {
       this.bgColor = '#e3dddd';
+    }
+    if (this.noBgColor) {
+      this.bgColor = '';
     }
   }
 }
