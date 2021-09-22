@@ -11,7 +11,7 @@ export class AppComponent {
   public animationClass = 'ngx-carousel-fade-animation';
   public carouselConfig: NgxCarousel = {
     height: '400px',
-    width: '100%',
+    width: '90%',
     applyAnimationToSteps: true,
     animation: true,
     loop: false,
@@ -33,7 +33,7 @@ export class AppComponent {
     carouselAnimationClass: 'ngx-carousel-fade-animation',
     // carouselAnimationClass: 'animate__animated animate__fadeInLeft',
     useKeyboard: true,
-    useMouseWheel: false,
+    useMouseWheel: true,
     pauseOnHover: true,
     resetOnResize: false,
     stepBackgroundSize: '100% 100%',

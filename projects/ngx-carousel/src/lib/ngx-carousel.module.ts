@@ -10,6 +10,7 @@ import {
   NgxCarouselSwipeDirective
 } from './directives';
 import { NgxCarouselStepCaptionDirective } from './directives/ngx-carousel-step-caption.directive';
+import { NgxCarouselMouseWheelEventsDirective } from './directives/ngx-carousel-mouse-wheel-events.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NgxCarouselStepCaptionDirective } from './directives/ngx-carousel-step-
     NgxCarouselStepContentDirective,
     NgxCarouselStepCaptionDirective,
     NgxCarouselKeyEventsDirective,
+    NgxCarouselMouseWheelEventsDirective,
     NgxCarouselSwipeDirective,
   ],
   exports: [
@@ -30,6 +32,7 @@ import { NgxCarouselStepCaptionDirective } from './directives/ngx-carousel-step-
     NgxCarouselStepContentDirective,
     NgxCarouselStepCaptionDirective,
     NgxCarouselKeyEventsDirective,
+    NgxCarouselMouseWheelEventsDirective,
     NgxCarouselSwipeDirective,
   ],
   imports: [CommonModule],

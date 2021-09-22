@@ -4,6 +4,9 @@
                 width: width
               }"
      [ngxCarouselKeyEvents]="useKeyboard"
+     [ngxCarouselMouseWheelEvents]="useMouseWheel"
+     (onMouseEnter)="onMouseEnter()"
+     (onMouseLeave)="onMouseLeave()"
      (right)="next()"
      (left)="previous()">
   <div *ngIf="stepList.length"

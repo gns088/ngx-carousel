@@ -263,9 +263,8 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   onContentInIt: EventEmitter<void> = new EventEmitter<void>();
 
   /**
-   * host listener to stop timer if mouse is on the carousel
+   * stop timer if mouse is on the carousel
    */
-  @HostListener('mouseenter')
   onMouseEnter(): void {
     if (this.pauseOnHover) {
       this.stopTimer();
@@ -273,29 +272,11 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   }
 
   /**
-   * host listener to start timer if mouse is on the carousel
+   * start timer if mouse is on the carousel
    */
-  @HostListener('mouseleave')
   onMouseLeave(): void {
     if (this.pauseOnHover) {
       this.startTimer();
-    }
-  }
-
-  /**
-   * host listener to change step if user scroll using mouse wheel when mouse is on carousel
-   */
-  @HostListener('mousewheel', ['$event'])
-  onMouseWheel(event: WheelEvent): void {
-    if (this.useMouseWheel) {
-      event.preventDefault(); // prevent window to scroll
-      const Δ = Math.sign(event.deltaY);
-
-      if (Δ > 0) {
-        this.next();
-      } else if (Δ < 0) {
-        this.previous();
-      }
     }
   }
 
