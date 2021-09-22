@@ -264,4 +264,31 @@ describe('NgxCarouselComponent', () => {
       expect(spyOnFn).toHaveBeenCalledWith(0);
     });
   });
+  describe('onMouseLeave', () => {
+    it('should call startTimer pauseOnHover is true', () => {
+      const spyOnFn = spyOn(component, 'startTimer');
+      component.onMouseLeave();
+      expect(spyOnFn).toHaveBeenCalled();
+    });
+    it('should not call startTimer pauseOnHover is false', () => {
+      component.pauseOnHover = false;
+      const spyOnFn = spyOn(component, 'startTimer');
+      component.onMouseLeave();
+      expect(spyOnFn).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('onMouseEnter', () => {
+    it('should call stopTimer pauseOnHover is true', () => {
+      const spyOnFn = spyOn(component, 'stopTimer');
+      component.onMouseEnter();
+      expect(spyOnFn).toHaveBeenCalled();
+    });
+    it('should not call stopTimer pauseOnHover is false', () => {
+      component.pauseOnHover = false;
+      const spyOnFn = spyOn(component, 'stopTimer');
+      component.onMouseEnter();
+      expect(spyOnFn).not.toHaveBeenCalled();
+    });
+  });
 });
