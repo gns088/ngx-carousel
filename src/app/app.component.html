@@ -393,11 +393,20 @@
         </label>
       </div>
     </div>
+    <div fxLayout="column" fxFlex="30">
+      <label>Button Position</label>
+      <select name="dots-type" [(ngModel)]="carouselConfig.buttonPosition">
+        <option value="top">Top</option>
+        <option value="center">Center</option>
+        <option value="bottom">Bottom</option>
+      </select>
+    </div>
   </div>
 
   <div class="mt-4">
     <ngx-carousel
       [height]="carouselConfig.height"
+      [maxHeight]="carouselConfig.maxHeight"
       [width]="carouselConfig.width"
       [applyAnimationToSteps]="carouselConfig.applyAnimationToSteps"
       [animation]="carouselConfig.animation"
@@ -412,6 +421,7 @@
       [previousButtonIconClass]="carouselConfig.previousButtonIconClass"
       [nextButtonIconClass]="carouselConfig.nextButtonIconClass"
       [buttonBg]="carouselConfig.buttonBg"
+      [buttonPosition]="carouselConfig.buttonPosition"
       [dotsBg]="carouselConfig.dotsBg"
       [dotsClass]="carouselConfig.dotsClass"
       [dotsType]="carouselConfig.dotsType"
@@ -461,7 +471,39 @@
                 make
                 a type specimen book. It has survived not only five centuries, but also the leap into electronic
                 typesetting,
-                remaining essentially unchanged.</p>
+                remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to
+                make
+                a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting,
+                remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to
+                make
+                a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting,
+                remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to
+                make
+                a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting,
+                remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to
+                make
+                a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting,
+                remaining essentially unchanged. </p>
             </div>
           </ng-template>
         </ng-container>

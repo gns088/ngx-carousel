@@ -47,6 +47,25 @@
   animation-duration: #{$time};
 }
 
+$ngx-carousel-button-height-width: 36px !default;
+$ngx-carousel-button-icon-size: calc(#{$ngx-carousel-button-height-width} / 2) !default;
+$ngx-carousel-button-background-color: #FFFFFF !default;
+$ngx-carousel-button-text-color: #000000 !default;
+$ngx-carousel-button-position: 2px !default;
+$ngx-carousel-button-hover-position: 0 !default;
+$ngx-carousel-button-outside-position: calc(-#{$ngx-carousel-button-height-width} / 2) !default;
+$ngx-carousel-button-outside-hover-position: calc((-#{$ngx-carousel-button-height-width} / 2) - 2px) !default;
+$ngx-carousel-indicator-circle-background-color: #FFFFFF !default;
+$ngx-carousel-indicator-circle-height-width: 14px !default;
+$ngx-carousel-indicator-line-height: 5px !default;
+$ngx-carousel-indicator-line-width: 30px !default;
+$ngx-carousel-fade-animation-from-opacity: 0.3 !default;
+$ngx-carousel-fade-animation-to-opacity: 1 !default;
+$ngx-carousel-fade-animation-duration: 2s !default;
+$ngx-carousel-step-background-color: #C7BDBD !default;
+$ngx-carousel-step-overlay-background-color: #00000040 !default;
+$ngx-carousel-step-overlay-opacity: 0.3 !default;
+
 .ngx-carousel-container {
   position: relative;
   margin: auto;
@@ -60,6 +79,7 @@
     }
 
     .ngx-carousel-step {
+      background-color: $ngx-carousel-step-background-color;
       height: 100%;
 
       &.display-none {
@@ -67,7 +87,7 @@
       }
 
       &.display-block {
-        display: block !important;
+        display: block;
       }
 
       &.image-background-style {
@@ -76,6 +96,8 @@
       }
 
       .ngx-carousel-step-overlay {
+        background-color: $ngx-carousel-step-overlay-background-color;
+        opacity: $ngx-carousel-step-overlay-opacity;
         pointer-events: none;
         position: absolute;
         height: 100%;
@@ -85,9 +107,8 @@
       }
 
       .ngx-carousel-step-content {
-        width: 90%;
         text-align: center;
-        padding: 20px;
+        padding: calc(#{$ngx-carousel-indicator-circle-height-width} * 2) calc(#{$ngx-carousel-button-height-width} + 10px);
         margin: 0 auto;
         overflow: hidden;
         overflow-y: auto;
@@ -106,78 +127,104 @@
     }
   }
 
-  .ngx-carousel-previous-button, .ngx-carousel-previous-button {
+  .ngx-carousel-next-button,
+  .ngx-carousel-previous-button {
     position: absolute;
     cursor: pointer;
-    top: 50%;
-    transform: translateY(-50%);
+
+    &.top {
+      top: 20%;
+      transform: translateY(-80%);
+    }
+
+    &.center {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.bottom {
+      bottom: 20%;
+      transform: translateY(-20%);
+    }
 
     &.previous-button {
-      left: 0;
+      left: $ngx-carousel-button-position;
 
       &.allow-button-animation {
         @include ngx-transition(left ease 0.6s);
 
         &:hover {
-          left: -2px;
+          left: $ngx-carousel-button-hover-position;
         }
       }
     }
 
     &.next-button {
-      right: 0;
+      right: $ngx-carousel-button-position;
 
       &.allow-button-animation {
         @include ngx-transition(right ease 0.6s);
 
         &:hover {
-          right: -2px;
+          right: $ngx-carousel-button-hover-position;
         }
       }
 
     }
 
     &.previous-button-outside {
-      left: -15px;
+      left: $ngx-carousel-button-outside-position;
 
       &.allow-button-animation {
         @include ngx-transition(left ease 0.6s);
 
         &:hover {
-          left: -17px;
+          left: $ngx-carousel-button-outside-hover-position;
         }
       }
     }
 
     &.next-button-outside {
-      right: -15px;
+      right: $ngx-carousel-button-outside-position;
 
       &.allow-button-animation {
         @include ngx-transition(right ease 0.6s);
 
         &:hover {
-          right: -17px;
+          right: $ngx-carousel-button-outside-hover-position;
         }
       }
     }
 
-    .icon-span {
-      padding: 10px;
+    .icon-button {
+      background-color: $ngx-carousel-button-background-color;
+      color: $ngx-carousel-button-text-color;
+      height: $ngx-carousel-button-height-width;
+      width: $ngx-carousel-button-height-width;
       border-radius: 50%;
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: $ngx-carousel-button-icon-size;
+      }
     }
   }
 
-  .ngx-carousel-dot-container {
+  .ngx-carousel-indicator-container {
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
 
-    .ngx-carousel-dot {
+    .ngx-carousel-indicator-circle {
       cursor: pointer;
-      height: 12px;
-      width: 12px;
-      margin: 0 4px;
+      background-color: $ngx-carousel-indicator-circle-background-color;
+      height: $ngx-carousel-indicator-circle-height-width;
+      width: $ngx-carousel-indicator-circle-height-width;
+      margin: 0 8px;
       opacity: 0.5;
       border-radius: 50%;
       display: inline-block;
@@ -185,10 +232,11 @@
     }
 
 
-    .ngx-carousel-indicator {
+    .ngx-carousel-indicator-line {
+      background-color: $ngx-carousel-indicator-circle-background-color;
+      height: $ngx-carousel-indicator-line-height;
+      width: $ngx-carousel-indicator-line-width;
       cursor: pointer;
-      height: 5px;
-      width: 30px;
       margin: 0 4px;
       opacity: 0.5;
       border-radius: 5px;
@@ -196,7 +244,7 @@
       @include ngx-transition(opacity .6s ease)
     }
 
-    .active, .ngx-carousel-dot:hover {
+    .active, .ngx-carousel-indicator-circle:hover, .ngx-carousel-indicator-line:hover {
       opacity: 1;
     }
   }
@@ -205,15 +253,15 @@
 
 
 .ngx-carousel-fade-animation {
-  @include animation(ngx-carousel-fade-animation, 2s);
+  @include animation(ngx-carousel-fade-animation, $ngx-carousel-fade-animation-duration);
 }
 
 @include keyframes(ngx-carousel-fade-animation) {
   from {
-    opacity: .2
+    opacity: $ngx-carousel-fade-animation-from-opacity
   }
   to {
-    opacity: 1
+    opacity: $ngx-carousel-fade-animation-to-opacity
   }
 }
 

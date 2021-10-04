@@ -1,5 +1,6 @@
 export interface NgxCarousel {
   height?: string;
+  maxHeight?: string;
   width?: string;
   applyAnimationToSteps?: boolean;
   hideOverFlow?: boolean;
@@ -25,4 +26,5 @@ export interface NgxCarousel {
   dotsClass?: string;
   dotsType?: 'box' | 'dot';
   stepBackgroundSize?: string;
+  buttonPosition?: 'top' | 'center' | 'bottom';
 }

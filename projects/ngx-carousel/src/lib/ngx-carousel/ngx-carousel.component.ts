@@ -25,11 +25,17 @@ import { NgxCarousel, NgxCarouselEvent } from '../types';
 export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, AfterContentInit {
 
   /**
-   * Height Of the carousel
+   * Minimum Height Of the carousel
    * default: 400
    */
   @Input()
   height = '400px';
+
+  /**
+   * max Height Of the carousel
+   */
+  @Input()
+  maxHeight;
 
   /**
    * Width of the carousel
@@ -159,6 +165,12 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
   nextButtonClass: string;
 
   /**
+   * to apply other classes to next button
+   */
+  @Input()
+  buttonPosition: 'top' | 'center' | 'bottom' = 'center';
+
+  /**
    * to apply icon classes to previous button
    * default: fas fa-chevron-left
    */
@@ -177,14 +189,14 @@ export class NgxCarouselComponent implements NgxCarousel, OnInit, OnDestroy, Aft
    * default: transparent
    */
   @Input()
-  buttonBg = 'transparent';
+  buttonBg: string;
 
   /**
    * To apply background dots buttons
    * default: #FFFFFF
    */
   @Input()
-  dotsBg = '#FFFFFF';
+  dotsBg: string;
 
   /**
    * To apply classes dots buttons

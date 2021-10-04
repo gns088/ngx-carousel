@@ -50,14 +50,14 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
    * default: #00000040
    */
   @Input()
-  public overlayColor = '#00000040';
+  public overlayColor: string;
 
   /**
    * overlay Opacity
    * default: 0.3
    */
   @Input()
-  public overlayOpacity = '0.3';
+  public overlayOpacity;
 
   /**
    * To set background size to step
@@ -87,12 +87,6 @@ export class NgxCarouselStepComponent implements NgxCarouselStep, OnInit {
   ngOnInit(): void {
     if (this.bgImage && !this.bgImage.includes('url')) {
       this.bgImage = `url("${this.bgImage}")`;
-    }
-    if (!this.bgColor) {
-      this.bgColor = '#e3dddd';
-    }
-    if (this.noBgColor) {
-      this.bgColor = '';
     }
   }
 }

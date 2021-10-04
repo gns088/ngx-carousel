@@ -28,14 +28,15 @@ export class AppComponent {
     buttonBg: '#3b95b8',
     dotsBg: '#FFFFFF',
     dotsClass: '',
-    dotsType: 'box',
-    hideOverFlow: true,
+    dotsType: 'dot',
+    hideOverFlow: false,
     carouselAnimationClass: 'ngx-carousel-fade-animation',
     // carouselAnimationClass: 'animate__animated animate__fadeInLeft',
     useKeyboard: true,
     useMouseWheel: true,
     pauseOnHover: true,
     resetOnResize: false,
+    buttonPosition: 'center',
     stepBackgroundSize: '100% 100%',
   };
   public carouselStepConfig = {
